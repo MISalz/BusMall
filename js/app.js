@@ -22,8 +22,8 @@ function Shelf(opt, src){
   pIndex.push(this);
 }
 // Create an algorithm that will randomly generate three unique product images
-function randomizer (max) {
-  return Math.floor(Math.random()) * max;
+function randomizer(max) {
+  return Math.floor(Math.random() * max);
 }
 
 function imgChoices() {
@@ -47,7 +47,7 @@ function imgChoices() {
 function endChoices() {
   divElement.removeEventListener('click', handleClick);
   divElement.textContent ='';
-  console.log ('Thank you for taking the time to complete the survey.d');
+  alert ('Thank you for taking the time to complete the survey.');
 }
 
 new Shelf('bag', './images/bag.jpg');
