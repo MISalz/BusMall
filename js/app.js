@@ -2,24 +2,22 @@
 
 console.log('its Saturday!');
 
-var products = [];
+var productIndex = [];
 
 var choice_one = document.getElementById('first_choice');
 var choice_two = document.getElementById('second_choice');
 var choice_three = document.getElementById('third_choice');
 var divElement = document.getElementById('product-options');
 
-
-// Create a constructor
-
 var tracker = 25;
 
-function Shelf(opt, src) {
+// Create a constructor
+function Shelf(opt, src){
   this.opt = opt;
   this.src = src;
   this.clicks = 0;
 
-  products.push(this);
+  productIndex.push(this);
 }
 // Create an algorithm that will randomly generate three unique product images
 function randomizer (max) {
@@ -27,9 +25,9 @@ function randomizer (max) {
 }
 
 function imgChoices() {
-  var pic1 = randomizer(products.length);
-  var pic2 = randomizer(products.length);
-  var pic3 = randomizer(products.length);
+  var pic1 = randomizer(productIndex.length);
+  var pic2 = randomizer(productIndex.length);
+  var pic3 = randomizer(productIndex.length);
 
   choice_one.src = Shelf[pic1].src;
   choice_one.title = Shelf[pic1].opt;
@@ -39,6 +37,9 @@ function imgChoices() {
 
   choice_three.src = Shelf[pic3].src;
   choice_three.title = Shelf[pic3].opt;
+
+
+
 }
 
 new Shelf('bag', './images/bag.jpg');
@@ -55,10 +56,10 @@ new Shelf('pen', './images/pen.jpg');
 new Shelf('sweep', './images/pet-sweep.jpg');
 new Shelf('scissors', './images/scissors.jpg');
 new Shelf('shark', './images/shark.jpg');
-new Shelf('sweep', './images/sweep.jpg');
+new Shelf('sweep', './images/sweep.png');
 new Shelf('tauntaun', './images/tauntaun.jpg');
 new Shelf('unicorn', './images/unicorn.jpg');
-new Shelf('usb', './images/usb.jpg');
+new Shelf('usb', './images/usb.gif');
 new Shelf('water', './images/water-can.jpg');
 new Shelf('wine', './images/wine-glass.jpg');
 
@@ -71,9 +72,9 @@ function endChoices(){
 //Once the users ‘clicks’ a product, generate three new products for the user to pick from.
 function handleClick(event){
   var productChoice = event.target.title;
-  for(var i = 0; i < products.length; i++){
-    if (productChoice === products[i].name){
-      products[i].clicks++;
+  for(var i = 0; i < productIndex.length; i++){
+    if (productChoice === productIndex[i].name){
+      productIndex[i].clicks++;
     }
   }
   tracker --;
