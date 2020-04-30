@@ -24,16 +24,22 @@ header { font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times 
     color: cornflowerblue;
 
 }
+h1{
+    font-size: 50px;
+}
 
 section {
     margin-top: 2%;
+
 }
-div {padding-right: 10%;
+#product-options{
+    padding-right: 10%;
+    background-color: pink
 }
 img {
-    text-align: center;
     float: right;
     margin-top: 2%;  
+    padding: 2%;
     height: 700px;
     width: 600px;
     border-radius: 50px;
@@ -46,12 +52,14 @@ nav {
     padding: 2%;
 }
 article {
+    font-size: 50px;
     background-color: turquoise;
     height: 60ex;
     width: 96%;
     padding: 2%;
 }
 footer {
+    font-size: 45px;
     background-color: violet;
     height: 10ex;
     width: 96%;

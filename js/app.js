@@ -1,8 +1,7 @@
 'use usestrict';
 
-console.log('its Saturday!');
-
 var busMall = [];
+console.log(busMall);
 
 // link to html image place holders
 var choiceOne = document.getElementById('first_choice');
@@ -80,23 +79,27 @@ function handleClick(event){
   for(var i = 0; i < busMall.length; i++){
     if (productChoice === busMall[i].name){
       busMall[i].clicks++;
+      console.log(busMall[i]);
     }
   }
   tracker --;
   if (tracker === 0 ){
     endChoices();
+    //write to nav bar total clicks
+    for(var i = 0 ; i < busMall.length; i++){
+      var imgEl = document.createElement('li');
+      imgEl.textContent = busMall[i].name;
+
+      var clEL = document.createElement('li');
+      clEL.textContent = busMall[i].clicks;
+      pElement.appendChild(imgEl);
+      pElement.appendChild(clEL);
+    }
   }
   imgChoices();
 }
-//Attach an event listener to the section of the HTML page where the images are going to be displayed.
-
 divElement.addEventListener('click', handleClick);
 
 imgChoices();
 
-//write to nav bar total clicks
-for(var i = 0 ; i < busMall.length; i++){
-  var imgEl = document.createElement('li');
-  imgEl.textContent = busMall[i];
-  pElement.appendChild(imgEl);
-}
+
