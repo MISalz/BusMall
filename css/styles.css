@@ -1,0 +1,67 @@
+
+*{
+    margin-left: 40px;
+    margin-right: 40px;
+    font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif; 
+    font-size: 24px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    line-height: 26.4px;
+}
+header { font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif; 
+    font-size: 150px; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: 700; 
+    text-shadow: 4px 6px 8px white;
+    border: 80%;
+    border-radius: 90%;
+    padding-left: 40%;
+    padding-top: 3%;
+    padding-bottom: 2%;
+    background-color: #001f3f;
+    color: cornflowerblue;
+
+}
+h1{
+    font-size: 50px;
+}
+
+section {
+    margin-top: 2%;
+
+}
+#product-options{
+    padding-right: 10%;
+    background-color: pink
+}
+img {
+    float: right;
+    margin-top: 2%;  
+    padding: 2%;
+    height: 700px;
+    width: 600px;
+    border-radius: 50px;
+    border-style: ridge;
+}
+nav {
+    background-color: orange;
+    height: 100ex;
+    width: 60ex;
+    padding: 2%;
+}
+article {
+    font-size: 50px;
+    background-color: turquoise;
+    height: 60ex;
+    width: 96%;
+    padding: 2%;
+}
+footer {
+    font-size: 45px;
+    background-color: violet;
+    height: 10ex;
+    width: 96%;
+    padding: 2%;
+}
