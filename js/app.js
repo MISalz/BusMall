@@ -14,16 +14,30 @@ var pElement = document.getElementById('tally');
 var tracker = 5;
 
 // Create a constructor
-function PictChoices(name, src){
+function PictChoices(name, src, clicks =0, turns=0){
   this.name = name;
   this.src = src;
-  this.clicks = 0;
-  this.turns = 0;
+  this.clicks = clicks;
+  this.turns = turns;
   busMall.push(this);
 }
 // Create an algorithm that will randomly generate three unique product images
 function randomizer(max){
   return Math.floor(Math.random() * max);
+}
+
+function saveLocalStorage(){
+  var savedProds = JSON.stringify(busMall);
+  localStorage.setItem('busMall', savedProds);
+}
+
+function loadLocalStorage(){
+  if(localStorage.getItem('busMall')){
+    var localStorageBus = JSON.parse(localStorage.getItem('busMall'));
+    for(var i=0; i < localStorageBus.length; i++){
+      new PictChoices
+    }
+  }
 }
 
 function imgChoices(){
@@ -69,6 +83,8 @@ function seedChartData(){
 
 function renderChart() {
   var ctx = document.getElementById('myChart').getContext('2d');
+  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-undef
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
