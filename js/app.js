@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 'use usestrict';
 
 var busMall = [];
@@ -12,6 +13,8 @@ var divElement = document.getElementById('product-options');
 var pElement = document.getElementById('tally');
 //track number of clicks
 var tracker = 5;
+
+var turnCounter = [];
 
 // Create a constructor
 function PictChoices(name, src, clicks =0, turns=0){
@@ -34,17 +37,42 @@ function saveLocalStorage(){
 function loadLocalStorage(){
   if(localStorage.getItem('busMall')){
     var localStorageBus = JSON.parse(localStorage.getItem('busMall'));
-    for(var i=0; i < localStorageBus.length; i++){
-      new PictChoices
+    for(var i = 0; i < localStorageBus.length; i++){
+      new PictChoices(localStorageBus[i].name, localStorageBus[i].src, localStorageBus[i].clicks, localStorageBus[i].turns);
     }
   }
+  else{
+    new PictChoices('Bag', './images/bag.jpg');
+    new PictChoices('Banana', './images/banana.jpg');
+    new PictChoices('Bathroom', './images/bathroom.jpg');
+    new PictChoices('Boots', './images/boots.jpg');
+    new PictChoices('Breakfast', './images/breakfast.jpg');
+    new PictChoices('Bubblegum', './images/bubblegum.jpg');
+    new PictChoices('Chair', './images/chair.jpg');
+    new PictChoices('Cthulhu', './images/cthulhu.jpg');
+    new PictChoices('DogDuck', './images/dog-duck.jpg');
+    new PictChoices('Dragon', './images/dragon.jpg');
+    new PictChoices('Pen', './images/pen.jpg');
+    new PictChoices('PetSweep', './images/pet-sweep.jpg');
+    new PictChoices('Scissors', './images/scissors.jpg');
+    new PictChoices('Shark', './images/shark.jpg');
+    new PictChoices('Sweep', './images/sweep.png');
+    new PictChoices('Tauntaun', './images/tauntaun.jpg');
+    new PictChoices('Unicorn', './images/unicorn.jpg');
+    new PictChoices('Usb', './images/usb.gif');
+    new PictChoices('Water', './images/water-can.jpg');
+    new PictChoices('Wine', './images/wine-glass.jpg');
+  }
+  imgChoices();
 }
 
 function imgChoices(){
-  var pic1 = randomizer(busMall.length);
-  var pic2 = randomizer(busMall.length);
-  var pic3 = randomizer(busMall.length);
-
+  do {
+    var pic1 = randomizer(busMall.length);
+    var pic2 = randomizer(busMall.length);
+    var pic3 = randomizer(busMall.length);
+  }
+  while(turnCounter.includes(pic1) || turnCounter.includes(pic2) || turnCounter.includes(pic3) || pic1 === pic2 === pic3);
 
   choiceOne.src = busMall[pic1].src;
   choiceOne.title = busMall[pic1].name;
@@ -54,6 +82,14 @@ function imgChoices(){
 
   choiceThree.src = busMall[pic3].src;
   choiceThree.title = busMall[pic3].name;
+
+  turnCounter.pop();
+  turnCounter.pop();
+  turnCounter.pop();
+
+  turnCounter.push(pic1);
+  turnCounter.push(pic2);
+  turnCounter.push(pic3);
 
   busMall[pic1].turns++;
   busMall[pic2].turns++;
@@ -83,6 +119,8 @@ function seedChartData(){
 
 function renderChart() {
   var ctx = document.getElementById('myChart').getContext('2d');
+  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line no-undef
   // eslint-disable-next-line no-unused-vars
   // eslint-disable-next-line no-undef
   var myChart = new Chart(ctx, {
@@ -145,26 +183,7 @@ function renderChart() {
   console.log('here');
 }
 
-new PictChoices('Bag', './images/bag.jpg');
-new PictChoices('Banana', './images/banana.jpg');
-new PictChoices('Bathroom', './images/bathroom.jpg');
-new PictChoices('Boots', './images/boots.jpg');
-new PictChoices('Breakfast', './images/breakfast.jpg');
-new PictChoices('Bubblegum', './images/bubblegum.jpg');
-new PictChoices('Chair', './images/chair.jpg');
-new PictChoices('Cthulhu', './images/cthulhu.jpg');
-new PictChoices('DogDuck', './images/dog-duck.jpg');
-new PictChoices('Dragon', './images/dragon.jpg');
-new PictChoices('Pen', './images/pen.jpg');
-new PictChoices('PetSweep', './images/pet-sweep.jpg');
-new PictChoices('Scissors', './images/scissors.jpg');
-new PictChoices('Shark', './images/shark.jpg');
-new PictChoices('Sweep', './images/sweep.png');
-new PictChoices('Tauntaun', './images/tauntaun.jpg');
-new PictChoices('Unicorn', './images/unicorn.jpg');
-new PictChoices('Usb', './images/usb.gif');
-new PictChoices('Water', './images/water-can.jpg');
-new PictChoices('Wine', './images/wine-glass.jpg');
+
 
 
 //Once the users ‘clicks’ a product, generate three new products for the user to pick from and track # of clicks
@@ -179,6 +198,7 @@ function handleClick(event){
 
   if (tracker === 0 ){
     endChoices();
+    saveLocalStorage();
     renderChart();
     //write to nav bar total clicks
     for(var j = 0 ; j < busMall.length; j++){
@@ -195,5 +215,5 @@ function handleClick(event){
 }
 divElement.addEventListener('click', handleClick);
 
-imgChoices();
+loadLocalStorage();
 
